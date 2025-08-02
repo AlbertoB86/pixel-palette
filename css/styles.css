@@ -1,0 +1,272 @@
+*{
+    color: rgb(219, 219, 219);
+    font-family: 'Press Start 2P';  
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    align-items: center;
+    background-image: url('../assets/img/freepik__pixelated-90sstyle-web-background-with-a-blurry-ab__41315.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+header{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+header h1{
+    font-size: 70px;
+    margin: 70px 0px 70px 0px;
+    text-shadow: 5px 5px 0px rgb(78, 78, 78);
+}
+
+header img{
+    width: 125px;
+    margin: 15px;
+}
+
+main{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 30px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; 
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.harmony-selector,
+.format-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#harmony{
+    background-color:rgba(93, 34, 133, 0.589); 
+    width: 300px;
+    background-color: rgb(219, 219, 219);
+    border-color: rgb(107, 107, 107);
+    border-radius: 2px;
+    box-shadow: 5px 5px 0px rgb(78, 78, 78);
+    color: rgba(93, 34, 133, 0.589);
+}
+
+select, 
+option, 
+label, 
+.harmony-selector select, 
+.harmony-selector option, 
+.format-selector label,
+.format-selector span {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  background-color: rgba(93, 34, 133, 0.589);
+  color: rgb(219, 219, 219);
+  border: 2px solid #41255a;
+  padding: 3px;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('../assets/icons/tile_0091.png');
+  background-repeat: no-repeat;
+  background-position: right 10px top 1px;
+  padding-right: 30px;
+}
+
+.switch{
+  position: relative;
+  display: inline-block;
+  background-color: rgb(219, 219, 219);
+  width: 60px;
+  height: 20px;
+}
+
+.switch input{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider{
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(219, 219, 219) !important;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-color: rgb(107, 107, 107);
+  border-radius: 2px;
+  box-shadow: 5px 5px 0px rgb(78, 78, 78);
+  vertical-align: middle;
+}
+
+.slider:before{
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  top: 2px;
+  bottom: auto;
+  background-color: rgb(134, 65, 148);
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 10%;
+  box-shadow: 2px 2px 0px rgb(78, 78, 78);
+}
+
+input:checked + .slider:before{
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+#generate-btn{
+    background: none;
+    background-color: rgba(93, 34, 133, 0.589);
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    padding: 10px 20px;
+    margin: 10px 0px 30px 0px;
+    font-size: 1em;
+    text-decoration: none;
+    transition-duration: 0.1s;
+    color: rgb(219, 219, 219);
+    border: 3px solid #41255a;
+    background-color: #602d8f;
+    box-shadow: 4px 4px 0  rgb(78, 78, 78);
+}
+
+.preview{
+    border: 7px solid rgb(219, 219, 219);
+    border-radius: 7px;
+    margin: 30px 0px 20px 0px;
+    padding: 20px 20px 20px 20px;
+    position: relative;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.preview-box{
+    padding: 32px 20px 20px 20px;
+    position: relative;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+footer{
+    font-size: 15px;
+    width: 100%;
+    height: auto;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p{
+    margin-top: 10px;
+    text-align: center;
+    
+}
+
+
+/* ===================== */
+/* 📱 Estilos Responsive */
+/* ===================== */
+@media (max-width: 768px){
+
+    header{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+    header h1 {
+        font-size: 32px;
+        margin: 20px;
+        text-align: center;
+    }
+
+    .container{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #harmony{        
+        width: 200px;
+    }
+
+    #generate-btn{
+        font-size: 12px;
+        padding: 8px 16px;
+        width: 100%;
+    }
+
+    .preview{
+        padding: 32px;
+        font-size: 10px;
+    }
+
+    .preview h3{
+        font-size: 14px;
+        top: -20px;
+        padding: 0 16px;
+    }
+
+    footer{
+        font-size: 12px;
+        height: auto;
+        padding: 20px 0;
+    }
+
+    #palette{
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
+
+
+

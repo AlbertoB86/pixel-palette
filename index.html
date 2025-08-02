@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>PixelPalette</title>
+</head>
+<body>    
+    <header>
+        <img src="./assets/icons/ChatGPT Image 2 ago 2025, 11_46_42.png" alt="">
+        <h1>PIXEL PALETTE</h1>
+        
+    </header>  
+
+    <main>
+        
+
+        <!-- Descripción del mundo generado -->
+        <section id="world-description" class="hidden">
+            <h2 id="world-name"></h2>
+            <p id="world-text"></p>
+        </section>
+
+        <!-- Paleta generada -->
+        <section id="palette">
+            <!-- Se llenará con 5 bloques de color desde JS -->
+        </section>
+
+        
+        <div class="container">
+            <section class="harmony-selector">
+                <label for="harmony">Armonía:</label>
+                <select id="harmony">
+                    <option value="">-- Selecciona una --</option>
+                    <option value="random">Aleatoria</option>
+                    <option value="analogous">Análoga</option>
+                    <option value="complementary">Complementaria</option>
+                    <option value="monochromatic">Monocromática</option>
+                    <option value="triadic">Triada</option>
+                </select>
+            </section>
+
+            <!-- Selector de formato -->
+            <section class="format-selector">
+                <span>HEX</span> 
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+                <span>RGB</span>                 
+            </section>
+        </div>
+        
+        <!-- Botón para generar nueva paleta -->
+        <section class="generador">
+            <button id="generate-btn">GENERAR PALETA</button>
+        </section>
+        
+
+        <!-- Vista previa -->
+        <section class="preview">
+            <h3>VISTA PREVIA</h3>    
+            <div class="preview-box">
+                <!-- <h4>Título de ejemplo</h4>
+                <p>Texto de párrafo con fondo y botones usando la paleta</p>
+                <button>Botón de ejemplo</button> -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 PixelPalette</p>
+        <p>By <a href="https://github.com/AlbertoB86?tab=repositories" target="_blank">Alberto Balaguer</a>. All rights reserved.</p>
+    </footer>    
+
+</body>
+</html>
