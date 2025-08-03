@@ -9,32 +9,23 @@
 </head>
 <body>    
     <header>
-        <img src="./assets/icons/ChatGPT Image 2 ago 2025, 11_46_42.png" alt="">
+        <!-- <img src="./assets/icons/ChatGPT Image 2 ago 2025, 11_46_42.png" alt=""> -->
         <h1>PIXEL PALETTE</h1>
-        
+        <!-- <img src="./assets/icons/logo.png" alt="">         -->
     </header>  
 
-    <main>
-        
-
+    <main>      
         <!-- Descripción del mundo generado -->
-        <section id="world-description" class="hidden">
+        <!-- <section id="world-description" class="hidden">
             <h2 id="world-name"></h2>
             <p id="world-text"></p>
-        </section>
-
-        <!-- Paleta generada -->
-        <section id="palette">
-            <!-- Se llenará con 5 bloques de color desde JS -->
-        </section>
-
+        </section> -->        
         
         <div class="container">
             <section class="harmony-selector">
-                <label for="harmony">Armonía:</label>
+                <label for="harmony">Metodo:</label>
                 <select id="harmony">
-                    <option value="">-- Selecciona una --</option>
-                    <option value="random">Aleatoria</option>
+                    <option value="random" selected>Aleatoria</option>
                     <option value="analogous">Análoga</option>
                     <option value="complementary">Complementaria</option>
                     <option value="monochromatic">Monocromática</option>
@@ -46,26 +37,29 @@
             <section class="format-selector">
                 <span>HEX</span> 
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="selector">
                     <span class="slider"></span>
                 </label>
                 <span>RGB</span>                 
             </section>
         </div>
+
         
         <!-- Botón para generar nueva paleta -->
         <section class="generador">
             <button id="generate-btn">GENERAR PALETA</button>
-        </section>
+        </section>              
         
-
         <!-- Vista previa -->
         <section class="preview">
             <h3>VISTA PREVIA</h3>    
             <div class="preview-box">
-                <!-- <h4>Título de ejemplo</h4>
-                <p>Texto de párrafo con fondo y botones usando la paleta</p>
-                <button>Botón de ejemplo</button> -->
+                <section id="palette">
+                    <!-- Se llenará con 5 bloques de color desde JS -->
+                </section>
+                <div id="ejemplos">
+
+                </div>               
             </div>
         </section>
     </main>
@@ -73,7 +67,11 @@
     <footer>
         <p>© 2025 PixelPalette</p>
         <p>By <a href="https://github.com/AlbertoB86?tab=repositories" target="_blank">Alberto Balaguer</a>. All rights reserved.</p>
-    </footer>    
+    </footer> 
+  
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="./js/generador.js"></script>    
 
 </body>
 </html>
