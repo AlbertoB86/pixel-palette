@@ -14,12 +14,7 @@
         <!-- <img src="./assets/icons/logo.png" alt="">         -->
     </header>  
 
-    <main>      
-        <!-- Descripción del mundo generado -->
-        <!-- <section id="world-description" class="hidden">
-            <h2 id="world-name"></h2>
-            <p id="world-text"></p>
-        </section> -->        
+    <main>   
         
         <div class="container">
             <section class="harmony-selector">
@@ -52,16 +47,30 @@
         
         <!-- Vista previa -->
         <section class="preview">
-            <h3>VISTA PREVIA</h3>    
+            <h3>VISTA PREVIA</h3>  
+
+            <p id="drag-info" class="hidden">
+                <img id="bombilla" src="./assets/icons/lightbulb-pixel-off.png" alt="">
+                Puedes arrastrar los colores hacia los roles para personalizar la vista previa.
+            </p>
+
             <div class="preview-box">
                 <section id="palette">
-                    <!-- Se llenará con 5 bloques de color desde JS -->
+                    <!-- Se llenará con 5 bloques de color desde JS -->                    
+                </section>
+                
+                <section class="roles">
+                    <div class="drop-zone" data-role="fondo"><p>Fondo</p></div>
+                    <div class="drop-zone" data-role="titulo"><p>Titulo</p></div>
+                    <div class="drop-zone" data-role="texto"><p>Texto</p></div>
+                    <div class="drop-zone" data-role="botonFondo"><p>Fondo Botón</p></div>
+                    <div class="drop-zone" data-role="botonTexto"><p>Texto Botón</p></div>                    
                 </section>
                 <div id="ejemplos">
-
+                    <!-- Se van a generar los ejemplos -->
                 </div>               
             </div>
-        </section>
+        </section>        
     </main>
 
     <footer>
