@@ -41,8 +41,8 @@ function iniciar(){
             color.className = 'caja';
             color.style.backgroundColor = escala[i];
 
-            color.innerText = hexRgb ? col.css() : col.hex();     
-            
+            color.innerText = hexRgb ? col.css() : col.hex().toUpperCase();
+
             // Contraste para texto legible
             const contraste = chroma.contrast(col, 'white');
             color.style.color = contraste > 4.5 ? 'white' : 'black';

@@ -7,15 +7,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>PixelPalette</title>
 </head>
-<body>    
+<body>
     <header>
         <!-- <img src="./assets/icons/ChatGPT Image 2 ago 2025, 11_46_42.png" alt=""> -->
         <h1>PIXEL PALETTE</h1>
         <!-- <img src="./assets/icons/logo.png" alt="">         -->
-    </header>  
+    </header>
 
-    <main>   
-        
+    <main>
         <div class="container">
             <section class="harmony-selector">
                 <label for="harmony">Metodo:</label>
@@ -30,57 +29,56 @@
 
             <!-- Selector de formato -->
             <section class="format-selector">
-                <span>HEX</span> 
+                <span>HEX</span>
                 <label class="switch">
                     <input type="checkbox" id="selector">
                     <span class="slider"></span>
                 </label>
-                <span>RGB</span>                 
+                <span>RGB</span>
             </section>
         </div>
 
-        
         <!-- Botón para generar nueva paleta -->
         <section class="generador">
             <button id="generate-btn">GENERAR PALETA</button>
-        </section>              
-        
+        </section>
+
         <!-- Vista previa -->
         <section class="preview">
-            <h3>VISTA PREVIA</h3>  
-
-            <p id="drag-info" class="hidden">
-                <img id="bombilla" src="./assets/icons/lightbulb-pixel-off.png" alt="">
-                Puedes arrastrar los colores hacia los roles para personalizar la vista previa.
-            </p>
-
+            <h3>VISTA PREVIA</h3>
             <div class="preview-box">
-                <section id="palette">
-                    <!-- Se llenará con 5 bloques de color desde JS -->                    
-                </section>
+                <p id="drag-info" class="hidden">
+                    <img id="bombilla" src="./assets/icons/lightbulb-pixel-off.png" alt="">
+                    Puedes arrastrar los colores hacia los roles para personalizar la vista previa.
+                </p>
                 
-                <section class="roles">
-                    <div class="drop-zone" data-role="fondo"><p>Fondo</p></div>
-                    <div class="drop-zone" data-role="titulo"><p>Titulo</p></div>
-                    <div class="drop-zone" data-role="texto"><p>Texto</p></div>
-                    <div class="drop-zone" data-role="botonFondo"><p>Fondo Botón</p></div>
-                    <div class="drop-zone" data-role="botonTexto"><p>Texto Botón</p></div>                    
-                </section>
+                <div class="paleta-roles">
+                    <section id="palette">
+                        <!-- Se llenará con 5 bloques de color desde JS -->
+                    </section>                
+
+                    <section class="roles">
+                        <div class="drop-zone" data-role="fondo"><p>Fondo</p></div>
+                        <div class="drop-zone" data-role="titulo"><p>Titulo</p></div>
+                        <div class="drop-zone" data-role="texto"><p>Texto</p></div>
+                        <div class="drop-zone" data-role="botonFondo"><p>Fondo Botón</p></div>
+                        <div class="drop-zone" data-role="botonTexto"><p>Texto Botón</p></div>
+                    </section>
+                </div>
+                
                 <div id="ejemplos">
                     <!-- Se van a generar los ejemplos -->
-                </div>               
+                </div>
             </div>
-        </section>        
+        </section>
     </main>
 
     <footer>
         <p>© 2025 PixelPalette</p>
         <p>By <a href="https://github.com/AlbertoB86?tab=repositories" target="_blank">Alberto Balaguer</a>. All rights reserved.</p>
-    </footer> 
-  
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
-    <script src="./js/generador.js"></script>    
-
+    <script src="./js/generador.js"></script>
 </body>
 </html>
