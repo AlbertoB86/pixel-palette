@@ -38,6 +38,12 @@
             </section>
         </div>
 
+        <div class="pixel-box">
+            <label for="color-base">Elige color:</label>
+            <div id="colorWheel"></div>
+            <input type="text" name="color-base" id="color-base" placeholder="#fff7fa">            
+        </div>
+
         <!-- Botón para generar nueva paleta -->
         <section class="generador">
             <button id="generate-btn">GENERAR PALETA</button>
@@ -51,13 +57,16 @@
                     <img id="bombilla" src="./assets/icons/lightbulb-pixel-off.png" alt="">
                     Puedes arrastrar los colores hacia los roles para personalizar la vista previa.
                 </p>
+                <p id="copy-info" class="hidden">
+                    Haz click en el color para copiarlo.
+                </p>
                 
                 <div class="paleta-roles">
                     <section id="palette">
                         <!-- Se llenará con 5 bloques de color desde JS -->
                     </section>                
 
-                    <section class="roles">
+                    <section class="roles hidden">
                         <div class="drop-zone" data-role="fondo"><p>Fondo</p></div>
                         <div class="drop-zone" data-role="titulo"><p>Titulo</p></div>
                         <div class="drop-zone" data-role="texto"><p>Texto</p></div>
@@ -79,6 +88,7 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
     <script src="./js/generador.js"></script>
 </body>
 </html>

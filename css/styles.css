@@ -48,7 +48,7 @@ main{
     margin: 30px;
 }
 
-.container {
+.container{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ main{
 }
 
 .harmony-selector,
-.format-selector {
+.format-selector{
   display: flex;
   align-items: center;
   gap: 10px;
@@ -74,13 +74,11 @@ main{
     color: rgba(93, 34, 133, 0.589);
 }
 
-select, 
-option, 
-label, 
+select, option, label, 
 .harmony-selector select, 
 .harmony-selector option, 
 .format-selector label,
-.format-selector span {
+.format-selector span{
   font-family: 'Press Start 2P', monospace;
   font-size: 12px;
   background-color: rgba(93, 34, 133, 0.589);
@@ -89,7 +87,7 @@ label,
   padding: 3px;
 }
 
-select {
+select{
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -125,8 +123,7 @@ select {
   bottom: 0;
   background-color: rgb(219, 219, 219) !important;
   -webkit-transition: .4s;
-  transition: .4s;
-  
+  transition: .4s;  
   vertical-align: middle;
 }
 
@@ -152,16 +149,49 @@ input:checked + .slider:before{
   transform: translateX(26px);
 }
 
-.color-picker{
-    margin: 20px 0px 30px 0px;
+.pixel-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #41255a;
+    background-color: rgba(93, 34, 133, 0.6);
+    box-shadow: 5px 5px 0 rgb(78, 78, 78);
+    padding: 10px;
+    font-family: 'Press Start 2P';
+    font-size: 10px;
+    width: fit-content;
+    margin: 10px auto;
+    text-align: center;
 }
 
-#color-picker{
-    height: 20px;
-    border-radius: 10%;
-    box-shadow: 2px 2px 0px rgb(78, 78, 78);
+#color-base{
+  margin-top: 10px;
+  padding: 4px;
+  font-family: 'Press Start 2P';
+  font-size: 10px;
+  background-color: rgb(219, 219, 219);
+  color: rgba(93, 34, 133, 0.8);
+  border: 2px solid #41255a;
+  width: 100px;
+  text-align: center;
 }
 
+#colorWheel{
+    margin: 10px;
+    filter: contrast(100%) saturate(1000%);
+    /* border: 2px solid #41255a; */
+    image-rendering: pixelated;
+    } 
+
+#base{
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+    background-color: rgb(219, 219, 219);
+    text-align: center;
+    color: black;
+}
 
 #generate-btn{
     background: none;
@@ -226,20 +256,24 @@ input:checked + .slider:before{
     cursor: grab;
 }
 
-#drag-info{
-    margin: 10px 10px 10 10px;
+#drag-info, #copy-info{
+    margin: 10px;
     align-items: center;
     text-align: center;
     font-size: 12px;
-    background-color: rgba(93, 34, 133, 0.4);
+    background-color: rgba(28, 13, 37, 0.4);
     border: 2px dashed #41255a;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
     box-shadow: 2px 2px 0 rgb(78, 78, 78);
 }
 
 #drag-info:not(.hidden){
   display: flex;
+}
+
+#copy-info:not(.hidden){
+    display: flex;
 }
 
 .hidden{
@@ -259,7 +293,7 @@ input:checked + .slider:before{
 .paleta-roles{
     display: flex;
     flex-direction: column;
-    align-items: center; /* CENTRA todo el bloque */
+    align-items: center;
     justify-content: center;
     width: 100%;
 }
@@ -323,10 +357,8 @@ footer p{
     text-align: center;    
 }
 
+/*  Estilos Responsive */
 
-/* ===================== */
-/* 📱 Estilos Responsive */
-/* ===================== */
 @media (max-width: 768px){
     header{
         flex-direction: column;
@@ -423,7 +455,7 @@ footer p{
     #ejemplos{
         margin: 20px 0;
         width: 90%;
-        border: 2px solid rgb(78, 78, 78);
+        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -449,9 +481,3 @@ footer p{
         padding: 10px 0;
     }
 }
-
-
-
-
-
-
