@@ -10,7 +10,7 @@ Generador de paletas de colores con estética **retro 8-bit**, diseñado para de
 
 ## 🔗 Demo en vivo
 
-👉 [Ver aplicación funcionando]()
+👉 [Ver aplicación funcionando](https://albertob86.github.io/pixel-palette/)
 
 ---
 
