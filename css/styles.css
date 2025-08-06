@@ -61,7 +61,7 @@ main{
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-self: start;
+  align-self: center;
   margin-top: 30px;
   gap: 20px;
 }
@@ -205,7 +205,6 @@ input:checked + .slider:before{
 #colorWheel{
     margin: 10px;
     filter: contrast(100%) saturate(1000%);
-    /* border: 2px solid #41255a; */
     image-rendering: pixelated;
     } 
 
@@ -216,10 +215,6 @@ input:checked + .slider:before{
     background-color: rgb(219, 219, 219);
     text-align: center;
     color: black;
-}
-
-.generador{
-    margin-top: 200px;
 }
 
 #generate-btn{
