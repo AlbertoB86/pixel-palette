@@ -5,49 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="./assets/icons/logo.png">
     <title>PixelPalette</title>
 </head>
 <body>
     <header>
-        <!-- <img src="./assets/icons/ChatGPT Image 2 ago 2025, 11_46_42.png" alt=""> -->
         <h1>PIXEL PALETTE</h1>
-        <!-- <img src="./assets/icons/logo.png" alt="">         -->
+        <img src="./assets/icons/logo.png" alt="">
     </header>
 
     <main>
         <div class="container">
-            <section class="harmony-selector">
-                <label for="harmony">Metodo:</label>
-                <select id="harmony">
-                    <option value="random" selected>Aleatoria</option>
-                    <option value="analogous">Análoga</option>
-                    <option value="complementary">Complementaria</option>
-                    <option value="monochromatic">Monocromática</option>
-                    <option value="triadic">Triada</option>
-                </select>
+            <div class="pixel-box">
+                <label for="color-base">Elige color:</label>
+                <div id="colorWheel"></div>
+                <div class="inputs-color">
+                    <label for="color-hex">HEX: </label>
+                    <input type="text" id="color-hex" placeholder="#fff7fa">
+                    
+                    <div class="rgb-group">
+                        <input type="number" id="r" min="0" max="255" placeholder="R">
+                        <input type="number" id="g" min="0" max="255" placeholder="G">
+                        <input type="number" id="b" min="0" max="255" placeholder="B">
+                    </div>
+                </div>         
+            </div>
+
+            <section class="column">
+                <section class="harmony-selector">
+                    <label for="harmony">Armonía:</label>
+                    <select id="harmony">
+                        <option value="random" selected>Aleatoria</option>
+                        <option value="analogous">Análoga</option>
+                        <option value="complementary">Complementaria</option>
+                        <option value="monochromatic">Monocromática</option>
+                        <option value="triadic">Triádica</option>
+                    </select>
+                </section>
+
+                <!-- Selector de formato -->
+                <section class="format-selector">
+                    <span>HEX</span>
+                    <label class="switch">
+                        <input type="checkbox" id="selector">
+                        <span class="slider"></span>
+                    </label>
+                    <span>RGB</span>
+                </section>
+
+                <!-- Botón para generar nueva paleta -->
+                <section class="generador">
+                    <button id="generate-btn">GENERAR PALETA</button>
+                </section>
             </section>
+            
+        </div>   
 
-            <!-- Selector de formato -->
-            <section class="format-selector">
-                <span>HEX</span>
-                <label class="switch">
-                    <input type="checkbox" id="selector">
-                    <span class="slider"></span>
-                </label>
-                <span>RGB</span>
-            </section>
-        </div>
-
-        <div class="pixel-box">
-            <label for="color-base">Elige color:</label>
-            <div id="colorWheel"></div>
-            <input type="text" name="color-base" id="color-base" placeholder="#fff7fa">            
-        </div>
-
-        <!-- Botón para generar nueva paleta -->
-        <section class="generador">
-            <button id="generate-btn">GENERAR PALETA</button>
-        </section>
 
         <!-- Vista previa -->
         <section class="preview">

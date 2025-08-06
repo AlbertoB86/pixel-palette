@@ -50,11 +50,20 @@ main{
 
 .container{
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 40px; 
   margin: 20px 0;
   flex-wrap: wrap;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-self: start;
+  margin-top: 30px;
+  gap: 20px;
 }
 
 .harmony-selector,
@@ -66,7 +75,7 @@ main{
 
 #harmony{
     background-color:rgba(93, 34, 133, 0.589); 
-    width: 300px;
+    width: 200px;
     background-color: rgb(219, 219, 219);
     border-color: rgb(107, 107, 107);
     border-radius: 2px;
@@ -165,16 +174,32 @@ input:checked + .slider:before{
     text-align: center;
 }
 
-#color-base{
-  margin-top: 10px;
+#color-hex{
+  margin: 10px 0 10px 0;
   padding: 4px;
+  font-family: 'Press Start 2P';
+  font-size: 10px;
+  background-color: rgb(219, 219, 219);
+  color: rgba(43, 26, 54, 0.8);
+  border: 2px solid #41255a;
+  width: 100px;
+  text-align: center;
+}
+
+.rgb-group {
+  display: flex;
+  gap: 5px;
+}
+
+.rgb-group input {
+  width: 55px;
+  height: 30px;
+  text-align: center;
   font-family: 'Press Start 2P';
   font-size: 10px;
   background-color: rgb(219, 219, 219);
   color: rgba(93, 34, 133, 0.8);
   border: 2px solid #41255a;
-  width: 100px;
-  text-align: center;
 }
 
 #colorWheel{
@@ -191,6 +216,10 @@ input:checked + .slider:before{
     background-color: rgb(219, 219, 219);
     text-align: center;
     color: black;
+}
+
+.generador{
+    margin-top: 200px;
 }
 
 #generate-btn{
@@ -378,6 +407,17 @@ footer p{
         width: 100%;
     }
 
+    .column{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
+    }
+
+    .generador{
+        margin-top: 10px;
+    }
+
     .harmony-selector{
         flex-direction: column;
         align-items: flex-start;
@@ -393,7 +433,7 @@ footer p{
         font-size: 12px;
         padding: 8px 16px;
         width: 100%;
-        margin: 0 auto 30px auto;
+        margin: 0 auto 10px auto;
     }
 
     #drag-info{

@@ -5,48 +5,50 @@
         const boton = document.getElementById('generate-btn');
         const colores = document.getElementById('palette');   
         const ejemplos = document.getElementById('ejemplos');
-
-        const toggle = document.getElementById('selector');
-        toggle.addEventListener('change', actualizarFormato);  
-
+        const toggle = document.getElementById('selector');      
         const dragInfo = document.getElementById('drag-info');
-        const bombilla = document.getElementById('bombilla');
-        let encendida = false;
-        let animacionBombillaActiva = false;
-
+        const bombilla = document.getElementById('bombilla');        
         const copyInfo = document.getElementById('copy-info');
-
-        const colorPicker = new iro.ColorPicker("#colorWheel", {
+        const hexInput = document.getElementById('color-hex');
+        const rInput = document.getElementById('r');
+        const gInput = document.getElementById('g');
+        const bInput = document.getElementById('b');
+        const colorPicker = new iro.ColorPicker("#colorWheel",{
             width: 180,
             color: "#fff7fa",
             borderWidth: 2,
             borderColor: "#41255a"
-            });
+        });      
 
-            const input = document.getElementById('color-base');
+        let encendida = false;
+        let animacionBombillaActiva = false;
 
-            // Actualiza input cuando cambia la rueda
-            colorPicker.on('color:change', function(color) {
-            input.value = color.hexString.toUpperCase();
-            });
+        sincronizarColorBase(colorPicker, hexInput, rInput, gInput, bInput);        
+        
+        toggle.addEventListener('change', actualizarFormato);  
+        boton.addEventListener('click', () =>{                
+            const hex = hexInput.value.trim();
+            const r = rInput.value;
+            const g = gInput.value;
+            const b = bInput.value;
+            let base;
 
-            // Actualiza rueda si se escribe un color válido
-            input.addEventListener('change', function() {
-            if (chroma.valid(input.value)) {
-                colorPicker.color.hexString = input.value;
+            if(chroma.valid(hex)){
+                base = chroma(hex);
+                colorPicker.color.hexString = base.hex(); // sincroniza la rueda
+            }else if(r !== '' && g !== '' && b !== '' && !isNaN(r) && !isNaN(g) && !isNaN(b) && +r >= 0 && +r <= 255 && +g >= 0 && +g <= 255 && +b >= 0 && +b <= 255){
+                base = chroma.rgb(+r, +g, +b);
+                colorPicker.color.rgb = { r: +r, g: +g, b: +b }; // sincroniza la rueda
+                hexInput.value = base.hex().toUpperCase(); // sincroniza el HEX
             } else {
-                alert("Introduce un color HEX válido");
+                base = chroma.random();
+                colorPicker.color = base; // sincroniza la rueda
+                hexInput.value = base.hex().toUpperCase(); // sincroniza el HEX
+                rInput.value = base.rgb()[0];
+                gInput.value = base.rgb()[1];
+                bInput.value = base.rgb()[2];
             }
-        });
 
-
-        boton.addEventListener('click', () =>{    
-            const inputColor = document.getElementById('color-base').value.trim().toUpperCase();
-
-            //Asignamos al color base el elegido por el usuario y si no elige ninguno lo pone aleatorio
-            const base = chroma.valid(inputColor) ? chroma(inputColor) : chroma.random();
-
-            //Llamada a la funcion selectArmonia 
             const opcion = document.getElementById('harmony').value;
             let armonia = selectArmonia(base, opcion);      
             
@@ -55,7 +57,7 @@
 
             //Generamos la paleta con 5 colores partiendo del color base, y segun la armonia que decidamos
             const escala = chroma.scale([base, armonia]).mode('lab').colors(5);
-
+            
             colores.innerHTML = '';
             ejemplos.innerHTML = '';      
 
@@ -68,7 +70,9 @@
                 color.className = 'caja';
                 color.style.backgroundColor = escala[i];
 
-                color.innerText = hexRgb ? col.css() : col.hex().toUpperCase();
+                const valorColor = hexRgb ? col.css() : col.hex().toUpperCase();
+                color.innerHTML = valorColor;
+                color.dataset.colorValue = valorColor;
 
                 // Contraste para texto legible
                 const contraste = chroma.contrast(col, 'white');
@@ -85,67 +89,72 @@
 
                 colores.appendChild(color);
 
-                document.querySelector('.roles').classList.remove('hidden');
-                
+                document.querySelector('.roles').classList.remove('hidden');                
             }  
 
             const zonas = document.querySelectorAll('.drop-zone');
-
-            zonas.forEach(zona =>{
-                zona.addEventListener('dragover', e => {
-                    e.preventDefault(); // Permite soltar
-                    zona.style.borderColor = '#fff'; // Feedback visual opcional
-                });
-
-                zona.addEventListener('dragleave', () => {
-                    zona.style.borderColor = '#ccc';
-                });
-
-                zona.addEventListener('drop', e =>{
-                    e.preventDefault();
-                    zona.style.borderColor = '#ccc';
-                    const color = e.dataTransfer.getData('text/plain');
-                    aplicarColor(zona.dataset.role, color);
-                });
-            });
+            crearDrops(zonas);   
 
             const objColores = asignarColores(escala);
+            generarEjemplos(objColores);
 
-            ejemplos.style.backgroundColor = objColores.fondo;
-
-            let titulo = document.createElement('h1');
-            titulo.id = 'titulo-preview';
-            titulo.style.color = objColores.titulo;
-            titulo.innerText = 'H1 de Ejemplo';
-
-            let texto = document.createElement('p');
-            texto.id = 'texto-preview';
-            texto.style.color = objColores.texto;
-            texto.innerText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia tempora excepturi, eos minima exercitationem, facere eaque sit natus sint alias reiciendis! Nulla beatae omnis odit reiciendis repudiandae. Ipsam, asperiores ea.';
-
-            let boton = document.createElement('button');
-            boton.id = 'boton-ejemplo';
-            boton.style.color = objColores.botonTexto;
-            boton.style.background = objColores.botonFondo;
-            boton.innerText = 'Pulsar';
-
-            ejemplos.appendChild(titulo);
-            ejemplos.appendChild(texto);
-            ejemplos.appendChild(boton);
-
-            //Cambia la bombilla a "on" / "off" cada seg
-            dragInfo.classList.remove('hidden');
-            if (!animacionBombillaActiva){
-                animacionBombillaActiva = true;
-                intervaloBombilla = setInterval(() => {
-                    encendida = !encendida;
-                    bombilla.src = encendida 
-                        ? './assets/icons/lightbulb-pixel-on.png' 
-                        : './assets/icons/lightbulb-pixel-off.png';
-                },1000);
-            }
-            copyInfo.classList.remove('hidden');
+            mostrarInfo();            
         });
+
+
+        function sincronizarColorBase(rueda, hexInput, rInput, gInput, bInput){
+            // Mediante la rueda, actualiza HEX y RGB
+            rueda.on('color:change', function(color){
+            const rgb = color.rgb;
+            hexInput.value = color.hexString.toUpperCase();
+            rInput.value = rgb.r;
+            gInput.value = rgb.g;
+            bInput.value = rgb.b;
+        });
+
+        // Mediante un valor HEX, actualiza la rueda y RGB
+        hexInput.addEventListener('change', function (){
+            const val = hexInput.value.trim();
+            if (chroma.valid(val)){
+                const newColor = chroma(val);
+                rueda.color.hexString = newColor.hex();
+                const rgb = newColor.rgb();
+                rInput.value = rgb.r;
+                gInput.value = rgb.g;
+                bInput.value = rgb.b;
+            }else{
+                alert("Introduce un color HEX válido");
+            }
+        });
+
+        // Mediante valores R, G o B, actualiza HEX y rueda 
+        [rInput, gInput, bInput].forEach(input =>{
+            input.addEventListener('input', () =>{
+                const r = +rInput.value.trim();
+                const g = +gInput.value.trim();
+                const b = +bInput.value.trim();
+
+                if (r !== '' && g !== '' && b !== ''){
+                    const rVal = +r, gVal = +g, bVal = +b;
+                    if (!isNaN(rVal) && !isNaN(gVal) && !isNaN(bVal)){
+                        if(rVal >= 0 && rVal <= 255 && gVal >= 0 && gVal <= 255 && bVal >= 0 && bVal <= 255){
+                            const color = chroma.rgb(rVal, gVal, bVal);
+                            rueda.color.rgb = { r: rVal, g: gVal, b: bVal };
+                            hexInput.value = color.hex().toUpperCase();
+                        }else{
+                            let errores = [];
+                            if (rVal < 0 || rVal > 255) errores.push("Rojo (R)");
+                            if (gVal < 0 || gVal > 255) errores.push("Verde (G)");
+                            if (bVal < 0 || bVal > 255) errores.push("Azul (B)");
+                            alert(`Valor fuera de rango en: ${errores.join(', ')}. Deben estar entre 0 y 255.`);
+                        }
+                    } else {
+                        alert("Los valores deben ser números enteros.");
+                    }
+                }
+            });
+        });
+        }
 
         // Funcion para seleccionar una Armonia, 
         function selectArmonia(base, opcion){
@@ -182,15 +191,17 @@
             cajas.forEach(caja =>{
                 const bg = caja.style.backgroundColor;
                 const color = chroma(bg);
-                caja.innerText = hexRgb ? color.css() : color.hex().toUpperCase();
+                const valor = hexRgb ? color.css() : color.hex().toUpperCase();
+                caja.innerText = valor;
+                caja.dataset.colorValue = valor;
+                
             });
         }
 
         // Funcion para asiganr los valore spor defecto en los ejemplos
         function asignarColores(escala){
             //Ordenamos los colores de más oscuro aa más claro
-            const ordenados = [...escala].sort((a, b) => chroma(a).luminance() - chroma(b).luminance());
-
+            const ordenados = [...escala].sort((a, b) => chroma(a).luminance() - chroma(b).luminance());            
             return{
                 fondo: ordenados[4],
                 titulo: ordenados[1],
@@ -225,22 +236,77 @@
             }
         }
 
-        function copiar(color){        
-            navigator.clipboard.writeText(color.textContent)
+        function copiar(color){       
+            navigator.clipboard.writeText(color.dataset.colorValue)
             .then(() => {
-                const original = color.textContent;
+                const original = color.dataset.colorValue;
                 color.textContent = 'Copiado!';
                 setTimeout(() => {
                     color.innerText = original;
-                }, 1500);
+                }, 300);
             })
             .catch(err => {
                 console.error('Error al copiar:', err);
-            });       
-            
+            });          
+        }
+
+        function generarEjemplos(objColores){
+            ejemplos.style.backgroundColor = objColores.fondo;
+
+            let titulo = document.createElement('h1');
+            titulo.id = 'titulo-preview';
+            titulo.style.color = objColores.titulo;
+            titulo.innerText = 'H1 de Ejemplo';
+
+            let texto = document.createElement('p');
+            texto.id = 'texto-preview';
+            texto.style.color = objColores.texto;
+            texto.innerText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia tempora excepturi, eos minima exercitationem, facere eaque sit natus sint alias reiciendis! Nulla beatae omnis odit reiciendis repudiandae. Ipsam, asperiores ea.';
+
+            let btnPreview = document.createElement('button');
+            btnPreview.id = 'boton-ejemplo';
+            btnPreview.style.color = objColores.botonTexto;
+            btnPreview.style.background = objColores.botonFondo;
+            btnPreview.innerText = 'Pulsar';
+
+            ejemplos.appendChild(titulo);
+            ejemplos.appendChild(texto);
+            ejemplos.appendChild(btnPreview);
+        }
+
+        function mostrarInfo(){
+            //Cambia la bombilla a "on" / "off" cada seg
+            dragInfo.classList.remove('hidden');
+            if (!animacionBombillaActiva){
+                animacionBombillaActiva = true;
+                intervaloBombilla = setInterval(() => {
+                    encendida = !encendida;
+                    bombilla.src = encendida 
+                        ? './assets/icons/lightbulb-pixel-on.png' 
+                        : './assets/icons/lightbulb-pixel-off.png';
+                },1000);
+            }
+            copyInfo.classList.remove('hidden');
+        }
+
+        function crearDrops(zonas){
+            zonas.forEach(zona =>{
+                zona.addEventListener('dragover', e => {
+                    e.preventDefault(); // Permite soltar
+                    zona.style.borderColor = '#fff'; // Feedback visual opcional
+                });
+
+                zona.addEventListener('dragleave', () => {
+                    zona.style.borderColor = '#ccc';
+                });
+
+                zona.addEventListener('drop', e =>{
+                    e.preventDefault();
+                    zona.style.borderColor = '#ccc';
+                    const color = e.dataTransfer.getData('text/plain');
+                    aplicarColor(zona.dataset.role, color);
+                });
+            });
         }
     }
-
 })();
-
-
