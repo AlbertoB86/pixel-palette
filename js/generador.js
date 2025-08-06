@@ -256,7 +256,7 @@
             let titulo = document.createElement('h1');
             titulo.id = 'titulo-preview';
             titulo.style.color = objColores.titulo;
-            titulo.innerText = 'H1 de Ejemplo';
+            titulo.innerText = 'Titulo de Ejemplo';
 
             let texto = document.createElement('p');
             texto.id = 'texto-preview';
