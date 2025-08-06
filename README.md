@@ -10,7 +10,7 @@ Generador de paletas de colores con estética **retro 8-bit**, diseñado para de
 
 ## 🔗 Demo en vivo
 
-👉 [Ver aplicación funcionando](https://albertob86.github.io/pixel-palette/)
+👉 [Ver demo online](https://albertob86.github.io/pixel-palette/)
 
 ---
 
@@ -22,7 +22,6 @@ Generador de paletas de colores con estética **retro 8-bit**, diseñado para de
 - 🔁 Cambio en tiempo real entre formatos **HEX** y **RGB**.
 - 🖱️ Funcionalidad *drag & drop* para aplicar los colores a roles visuales: fondo, texto, botones, etc.
 - 📋 Copia el color al portapapeles haciendo click.
-- 📱 Responsive.
 - 👾 Estética pixel retro con interfaz accesible y visualmente atractiva.
 
 ---
@@ -37,7 +36,7 @@ Generador de paletas de colores con estética **retro 8-bit**, diseñado para de
 ---
 
 ## Autor
-[🔗 LinkedIn](https://www.linkedin.com/in/albertobalaguer/)
+Alberto Balaguer - [LinkedIn](https://www.linkedin.com/in/albertobalaguer/)
 
 ---
 
